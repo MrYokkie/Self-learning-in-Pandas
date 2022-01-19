@@ -1,37 +1,37 @@
-#import paketow wkluczaja seaborn
+
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 df = pd.read_csv("titanic.csv")
 df
-#seaborn mozna skripty smotret po ssylke nize
+
 #https://seaborn.pydata.org/generated/seaborn.clustermap.html?highlight=sns%20clustermap
 
-#info na wse df
+#info for whole df
 df.info()
 
 a = df["Survived"]
 a
-#sozdanie dataframa dla replecji
+#df creating for mapping
 survived_r =  {
     "0":"no",
     "1":"yes"
 }
 survived_r
-#komanda perenosa danych w drugoj dataframe
+#replace data as we need
 a.replace(survived_r)
 
 df
-#instalacja pakieta dla statistiki
+#package instalation for statistycal analysis
 !pip install pingouin
-#import pekata
+#import as png
 import pingouin as png
 df.Age
 
 df.info()
-#joinplot iz seaborna
+#joinplot with seaborna
 sns.jointplot( x = "Age", y = "Fare",kind = "hex" ,data = df )
-#koleracjia mezdu kolumnami
+#correlation checking between features
 png.corr(df.Age, df.Fare)
 
 sr =df.loc[df.Survived == "1"]
@@ -53,17 +53,17 @@ df["Country name"]
 df["Regional indicator"]
 df["Regional indicator"].value_counts()
 df.loc[:10,["Country name","Ladder score"]]
-df.iloc[:10,[0,2]]#poisk po nomeru indexa, w sluczaje esli ne zamy nazwaniii column
+df.iloc[:10,[0,2]]#search the indexs we need, in case we dont know the name of searases
 a = "Poland"
-df["Country name"]=="Poland"#libo peremennaja #wektorowoje srawnenie
+df["Country name"]=="Poland"#search accordingly to vfeature
 df.loc[:,"Country name"]
-b = df.loc[df.loc[:,"Country name"]== a,"Country name"]# poisk opredelionoj peremennoj w kolone,osnownoj sposob ndexirowania w pandase 
+b = df.loc[df.loc[:,"Country name"]== a,"Country name"] 
 df.loc[df.loc[:,"Country name"]== a,"Country name":"Ladder score"]
-df.loc[df.loc[:,"Country name"]== a,"Country name":]# wsia info po naszemu indexu
+df.loc[df.loc[:,"Country name"]== a,"Country name":]# whole info towards to our indexes
 df["Regional indicator"]=="Central and Eastern Europe"
 df.loc[df["Regional indicator"]=="Central and Eastern Europe","Country name":"Ladder score"]
 df.sort_values(by = "Logged GDP per capita")
-df.sort_values(by = "Logged GDP per capita", ascending = False #ascending dla obratnoj sortirowki)
+df.sort_values(by = "Logged GDP per capita", ascending = False #ascending for reversable sorting
 df_gdp = df.sort_values(by = "Logged GDP per capita", ascending = False)
 df["Logged GDP per capita"] > 10
 df.loc[df["Logged GDP per capita"] > 10, ["Country name","Ladder score"]]
